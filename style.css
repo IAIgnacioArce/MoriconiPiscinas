@@ -1,0 +1,306 @@
+/* =========================================
+   VARIABLES DE COLOR
+   ========================================= */
+:root {
+    --dark-blue: #081F5C;
+    --royal-blue: #334EAC;
+    --light-blue: #D0E3FF;
+    --mid-blue: #7096D1;
+    --slate-green: #567C8D;
+    --white-bg: #F7F2EB;
+    --white-alt: #FFF9F0;
+    --text-dark: #1a1a1a;
+}
+
+/* =========================================
+   RESET Y BASE ARCHITECTURAL
+   ========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* Pila de fuentes nativas geométricas y limpias */
+    font-family: 'Century Gothic', 'Tw Cen MT', 'Futura', system-ui, -apple-system, sans-serif;
+    background-color: var(--white-bg);
+    color: var(--text-dark);
+    line-height: 1.6;
+    scroll-behavior: smooth;
+}
+
+h1, h2, h3 {
+    color: var(--dark-blue);
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* =========================================
+   NAVEGACIÓN
+   ========================================= */
+.topbar {
+    background-color: var(--dark-blue);
+    color: var(--white-alt);
+    text-align: center;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 5%;
+    background-color: var(--white-alt);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(8, 31, 92, 0.1);
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--dark-blue);
+    letter-spacing: 1px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav-links a {
+    color: var(--dark-blue);
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--royal-blue);
+}
+
+.btn-nav {
+    background-color: var(--slate-green);
+    color: var(--white-alt) !important;
+    padding: 0.7rem 1.5rem;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-nav:hover {
+    background-color: var(--dark-blue);
+}
+
+/* =========================================
+   HERO SECTION (IMPACTO)
+   ========================================= */
+.hero {
+    background: linear-gradient(rgba(8, 31, 92, 0.7), rgba(8, 31, 92, 0.7)), url('https://images.unsplash.com/photo-1576013551627-148fa8924385?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--white-alt);
+    padding: 0 5%;
+}
+
+.hero-content {
+    max-width: 800px;
+}
+
+.hero h1 {
+    color: var(--white-alt);
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.btn-primary {
+    display: inline-block;
+    background-color: var(--royal-blue);
+    color: var(--white-alt);
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--dark-blue);
+    transform: translateY(-3px);
+}
+
+/* =========================================
+   SECCIONES GENERALES & GEOMETRÍA
+   ========================================= */
+section {
+    padding: 5rem 5%;
+}
+
+.stats-banner {
+    background-color: var(--light-blue);
+    text-align: center;
+    padding: 4rem 5%;
+}
+
+.stats-banner h2 {
+    font-size: 2.5rem;
+    color: var(--dark-blue);
+}
+
+.why-choose-us h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+}
+
+.grid-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.card {
+    background-color: var(--white-alt);
+    padding: 2.5rem 1.5rem;
+    border-top: 5px solid var(--royal-blue);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.card h3 {
+    color: var(--royal-blue);
+    font-size: 1.3rem;
+}
+
+.technical-system {
+    background-color: var(--dark-blue);
+    color: var(--white-bg);
+}
+
+.technical-system h2, .technical-system h3 {
+    color: var(--light-blue);
+}
+
+.system-details {
+    display: flex;
+    gap: 3rem;
+    margin-top: 3rem;
+}
+
+.gallery-section {
+    text-align: center;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-top: 3rem;
+}
+
+.gallery-item {
+    background-color: var(--mid-blue);
+    height: 250px;
+    display: flex;
+    align-items: flex-end;
+    padding: 1rem;
+    color: var(--white-alt);
+    font-weight: bold;
+}
+
+/* =========================================
+   FOOTER Y WHATSAPP FLOTANTE
+   ========================================= */
+footer {
+    background-color: var(--dark-blue);
+    color: var(--light-blue);
+    padding: 5rem 5% 2rem;
+}
+
+.cta-final {
+    text-align: center;
+    margin-bottom: 4rem;
+    padding-bottom: 4rem;
+    border-bottom: 1px solid var(--slate-green);
+}
+
+.cta-final h2 {
+    color: var(--white-alt);
+}
+
+.footer-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.footer-info a {
+    color: var(--light-blue);
+}
+
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #25D366;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    z-index: 9999;
+    transition: transform 0.3s ease;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+}
+
+.whatsapp-float img {
+    width: 35px;
+    height: auto;
+}
+
+/* =========================================
+   RESPONSIVE DESIGN (Móviles)
+   ========================================= */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    .system-details {
+        flex-direction: column;
+    }
+}

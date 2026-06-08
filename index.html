@@ -3,10 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Nueva Página Web</title>
+    <title>Moriconi Piscinas | 55 años construyendo piletas en Córdoba</title>
+    <!-- Aquí luego conectaremos nuestro archivo CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>¡Hola Mundo! Soy Mia cilofeeee.</h1>
-    <p>Esta es la base de nuestro nuevo proyecto.</p>
+
+    <!-- 1. Topbar y Navbar -->
+    <header>
+        <div class="topbar">
+            <span>📍 Av. Los Álamos 1111, La Calera, Córdoba | 📞 +54 351 5902326</span>
+        </div>
+        <nav class="navbar">
+            <div class="logo">MORICONI PISCINAS</div>
+            <ul class="nav-links">
+                <li><a href="#historia">Nosotros</a></li>
+                <li><a href="#ventajas">Por qué elegirnos</a></li>
+                <li><a href="#sistema">Sistema Constructivo</a></li>
+                <li><a href="#galeria">Obras</a></li>
+                <li><a href="#contacto" class="btn-nav">Solicitar Presupuesto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 2. Hero Section (Sección de Impacto) -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>55 años construyendo piletas en Córdoba</h1>
+            <p>Desde hace más de cinco décadas construimos bajo un sistema tradicional desarrollado para las condiciones climáticas de nuestro país, combinando calidad, experiencia y durabilidad en cada proyecto.</p>
+            <a href="#contacto" class="btn-primary">Solicitar Presupuesto</a>
+        </div>
+    </section>
+
+    <!-- 3. Grilla de Propuesta de Valor (Estadísticas Rápidas) -->
+    <section class="stats-banner">
+        <div class="stat-item">
+            <h2>Más de 2.500 piletas construidas</h2>
+            <p>Durante más de 55 años hemos construido piletas en toda la provincia, convirtiéndonos en una de las empresas de mayor trayectoria del sector. Nuestro crecimiento siempre estuvo impulsado por la recomendación de nuestros propios clientes.</p>
+        </div>
+    </section>
+
+    <!-- 4. Cards de Razones (Por qué elegirnos) -->
+    <section id="ventajas" class="why-choose-us">
+        <h2>¿Por qué elegir Moriconi Piscinas?</h2>
+        <div class="grid-cards">
+            <article class="card">
+                <h3>55 años de experiencia</h3>
+                <p>Más de medio siglo dedicados exclusivamente a la construcción de piletas de natación.</p>
+            </article>
+            <article class="card">
+                <h3>Más de 2.500 obras realizadas</h3>
+                <p>Miles de proyectos ejecutados en viviendas particulares, countries, complejos turísticos y desarrollos inmobiliarios.</p>
+            </article>
+            <article class="card">
+                <h3>Sistema constructivo propio</h3>
+                <p>Un método desarrollado específicamente para responder a las condiciones climáticas de nuestro país.</p>
+            </article>
+            <article class="card">
+                <h3>10 años de garantía estructural</h3>
+                <p>Construimos con la tranquilidad de poder respaldar nuestras obras durante años.</p>
+            </article>
+        </div>
+    </section>
+
+    <!-- 5. Historia y Trayectoria -->
+    <section id="historia" class="history-section">
+        <div class="history-content">
+            <h2>Una historia construida generación tras generación</h2>
+            <p>Moriconi Piscinas fue fundada por el Ing. Civil Alberto Moriconi, quien dedicó su carrera al perfeccionamiento de sistemas constructivos adaptados a Argentina. Su experiencia dio origen a un sistema tradicional propio.</p>
+            <p>Con el paso de los años, la empresa fue ampliada por Horacio Moriconi, manteniendo los estándares de calidad. Hoy, seguimos combinando experiencia, innovación y tradición para proyectos pensados para durar generaciones.</p>
+        </div>
+    </section>
+
+    <!-- 6. Detalles Técnicos del Sistema -->
+    <section id="sistema" class="technical-system">
+        <h2>Un sistema pensado para el clima argentino</h2>
+        <div class="system-details">
+            <div class="detail-block">
+                <h3>¿Cómo construimos?</h3>
+                <p>Nuestro sistema combina ladrillo, hierro, cemento y hormigón. Cada obra se desarrolla sobre una estructura integrada por hierro, vigas, riostras y hormigón armado, formando una base sólida y resistente.</p>
+            </div>
+            <div class="detail-block">
+                <h3>Minimizando fisuras</h3>
+                <p>Toda la estructura es encofrada mediante ladrillo, ocultando vigas y columnas. La inercia térmica del ladrillo minimiza los efectos de la amplitud térmica y favorece la estabilidad, reduciendo fisuras superficiales.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Grilla de Obras / Galería -->
+    <section id="galeria" class="gallery-section">
+        <h2>Obras que hablan por sí solas</h2>
+        <p>Más de 2.500 proyectos realizados en toda la provincia.</p>
+        <div class="gallery-grid">
+            <!-- Aquí luego irán las imágenes -->
+            <div class="gallery-item"><span>Piletas residenciales</span></div>
+            <div class="gallery-item"><span>Countries y barrios cerrados</span></div>
+            <div class="gallery-item"><span>Complejos turísticos</span></div>
+            <div class="gallery-item"><span>Proyectos personalizados</span></div>
+        </div>
+    </section>
+
+    <!-- 8. Footer y Contacto Final -->
+    <footer id="contacto">
+        <div class="cta-final">
+            <h2>Construyamos juntos tu próxima pileta</h2>
+            <p>Cada terreno es diferente. Cada proyecto también. Nuestro equipo puede asesorarte para diseñar una solución adaptada a tu espacio.</p>
+            <a href="https://wa.me/543515902326?text=Hola%20Moriconi%20Piscinas%2C%20vengo%20de%20la%20web%20y%20quiero%20mas%20informaci%C3%B3n." class="btn-primary" target="_blank">Solicitá tu presupuesto</a>
+        </div>
+        <div class="footer-info">
+            <div class="contact-data">
+                <p><strong>Mail:</strong> <a href="mailto:Horaciomoriconi@hotmail.com">Horaciomoriconi@hotmail.com</a></p>
+                <p><strong>Teléfono:</strong> +54 351 5902326</p>
+                <p><strong>Dirección:</strong> Av. Los Álamos 1111, La Calera, Córdoba</p>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 Moriconi Piscinas. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón Flotante de WhatsApp -->
+    <a href="https://wa.me/543515902326?text=Hola%20Moriconi%20Piscinas%2C%20vengo%20de%20la%20web%20y%20quiero%20mas%20informaci%C3%B3n." class="whatsapp-float" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
+
 </body>
 </html>
