@@ -4,12 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Moriconi Piscinas | 55 años construyendo piletas en Córdoba</title>
-    <!-- Aquí luego conectaremos nuestro archivo CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- 1. Topbar y Navbar -->
     <header>
         <div class="topbar">
             <span>📍 Av. Los Álamos 1111, La Calera, Córdoba | 📞 +54 351 5902326</span>
@@ -26,24 +24,21 @@
         </nav>
     </header>
 
-    <!-- 2. Hero Section (Sección de Impacto) -->
-    <section class="hero">
+    <section class="hero" id="hero-section">
+        <div id="canvas-container"></div>
+        
         <div class="hero-content">
             <h1>55 años construyendo piletas en Córdoba</h1>
             <p>Desde hace más de cinco décadas construimos bajo un sistema tradicional desarrollado para las condiciones climáticas de nuestro país, combinando calidad, experiencia y durabilidad en cada proyecto.</p>
-            <a href="#contacto" class="btn-primary">Solicitar Presupuesto</a>
+            <a href="https://wa.me/543515902326?text=Hola%20Moriconi%20Piscinas%2C%20vengo%20de%20la%20web%20y%20quiero%20mas%20informaci%C3%B3n." class="btn-primary" target="_blank">Solicitar Presupuesto</a>
         </div>
     </section>
 
-    <!-- 3. Grilla de Propuesta de Valor (Estadísticas Rápidas) -->
     <section class="stats-banner">
-        <div class="stat-item">
-            <h2>Más de 2.500 piletas construidas</h2>
-            <p>Durante más de 55 años hemos construido piletas en toda la provincia, convirtiéndonos en una de las empresas de mayor trayectoria del sector. Nuestro crecimiento siempre estuvo impulsado por la recomendación de nuestros propios clientes.</p>
-        </div>
+        <h2>Más de 2.500 piletas construidas</h2>
+        <p>Durante más de 55 años hemos construido piletas en toda la provincia, convirtiéndonos en una de las empresas de mayor trayectoria del sector. Nuestro crecimiento siempre estuvo impulsado por la recomendación de nuestros propios clientes.</p>
     </section>
 
-    <!-- 4. Cards de Razones (Por qué elegirnos) -->
     <section id="ventajas" class="why-choose-us">
         <h2>¿Por qué elegir Moriconi Piscinas?</h2>
         <div class="grid-cards">
@@ -66,16 +61,14 @@
         </div>
     </section>
 
-    <!-- 5. Historia y Trayectoria -->
     <section id="historia" class="history-section">
         <div class="history-content">
             <h2>Una historia construida generación tras generación</h2>
             <p>Moriconi Piscinas fue fundada por el Ing. Civil Alberto Moriconi, quien dedicó su carrera al perfeccionamiento de sistemas constructivos adaptados a Argentina. Su experiencia dio origen a un sistema tradicional propio.</p>
-            <p>Con el paso de los años, la empresa fue ampliada por Horacio Moriconi, manteniendo los estándares de calidad. Hoy, seguimos combinando experiencia, innovación y tradición para proyectos pensados para durar generaciones.</p>
+            <p>Con el paso de los años, la empresa fue ampliada por Horacio Moriconi, manteniendo los estándares de calidad. Hoy, seguimos combinando experiencia, innovación y tradición para desarrollar proyectos pensados para durar generaciones.</p>
         </div>
     </section>
 
-    <!-- 6. Detalles Técnicos del Sistema -->
     <section id="sistema" class="technical-system">
         <h2>Un sistema pensado para el clima argentino</h2>
         <div class="system-details">
@@ -90,12 +83,10 @@
         </div>
     </section>
 
-    <!-- 7. Grilla de Obras / Galería -->
     <section id="galeria" class="gallery-section">
         <h2>Obras que hablan por sí solas</h2>
         <p>Más de 2.500 proyectos realizados en toda la provincia.</p>
         <div class="gallery-grid">
-            <!-- Aquí luego irán las imágenes -->
             <div class="gallery-item"><span>Piletas residenciales</span></div>
             <div class="gallery-item"><span>Countries y barrios cerrados</span></div>
             <div class="gallery-item"><span>Complejos turísticos</span></div>
@@ -103,7 +94,6 @@
         </div>
     </section>
 
-    <!-- 8. Footer y Contacto Final -->
     <footer id="contacto">
         <div class="cta-final">
             <h2>Construyamos juntos tu próxima pileta</h2>
@@ -122,10 +112,108 @@
         </div>
     </footer>
 
-    <!-- Botón Flotante de WhatsApp -->
     <a href="https://wa.me/543515902326?text=Hola%20Moriconi%20Piscinas%2C%20vengo%20de%20la%20web%20y%20quiero%20mas%20informaci%C3%B3n." class="whatsapp-float" target="_blank">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
     </a>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/5.3.3/pixi.min.js"></script>
+    <script>
+        const container = document.getElementById('canvas-container');
+        const heroSection = document.getElementById('hero-section');
+
+        // Inicializamos la aplicación de PixiJS
+        const app = new PIXI.Application({
+            width: window.innerWidth,
+            height: heroSection.offsetHeight,
+            autoDensity: true,
+            resolution: window.devicePixelRatio || 1,
+            backgroundColor: 0x09090B,
+        });
+
+        container.appendChild(app.view);
+
+        // Cargamos la imagen de la pileta desde tu carpeta local
+        const background = PIXI.Sprite.from('./imagenes/piletaDesdeArriba.jpg');
+        
+        // Ajustamos la imagen para que cubra todo el espacio del hero
+        background.anchor.set(0.5);
+        background.x = app.screen.width / 2;
+        background.y = app.screen.height / 2;
+        
+        // Función para redimensionar y mantener el efecto cover de la imagen
+        function resizeBackground() {
+            const screenRatio = app.screen.width / app.screen.height;
+            const imageRatio = background.texture.width / background.texture.height;
+            
+            if (screenRatio > imageRatio) {
+                background.width = app.screen.width;
+                background.height = app.screen.width / imageRatio;
+            } else {
+                background.height = app.screen.height;
+                background.width = app.screen.height * imageRatio;
+            }
+            background.x = app.screen.width / 2;
+            background.y = app.screen.height / 2;
+        }
+
+        // Asegurar que cuando cargue la textura se ajuste correctamente
+        background.texture.baseTexture.on('loaded', resizeBackground);
+        app.stage.addChild(background);
+
+        // Mapa de desplazamiento (Textura de ruido que simula las ondas de agua)
+        const displacementSprite = PIXI.Sprite.from('https://res.cloudinary.com/dvxmac3eg/image/upload/v1647466885/clouds_f0p920.jpg');
+        displacementSprite.texture.baseTexture.wrapMode = PIXI.WRAP_MODES.REPEAT;
+        
+        const displacementFilter = new PIXI.filters.DisplacementFilter(displacementSprite);
+        
+        // Seteamos la escala inicial del filtro de distorsión
+        displacementFilter.scale.x = 30;
+        displacementFilter.scale.y = 30;
+        
+        displacementSprite.scale.set(1.5);
+        app.stage.addChild(displacementSprite);
+        app.stage.filters = [displacementFilter];
+
+        let targetX = 0;
+        let targetY = 0;
+        let mouseInteracting = false;
+
+        // Rastreamos el movimiento del mouse dentro del Hero
+        heroSection.addEventListener('mousemove', (e) => {
+            const rect = heroSection.getBoundingClientRect();
+            // Calculamos la posición relativa al centro de la pantalla
+            targetX = (e.clientX - rect.left - rect.width / 2) * 0.4;
+            targetY = (e.clientY - rect.top - rect.height / 2) * 0.4;
+            mouseInteracting = true;
+        });
+
+        // Detectar cuando el mouse sale de la sección
+        heroSection.addEventListener('mouseleave', () => {
+            mouseInteracting = false;
+        });
+
+        // Bucle de animación (Ticker) corre a 60fps
+        app.ticker.add((delta) => {
+            // Movimiento constante simulando la corriente fluida del agua
+            displacementSprite.x += 0.6 * delta;
+            displacementSprite.y += 0.4 * delta;
+
+            if (mouseInteracting) {
+                // Suavizado de la interacción (Interpolación lineal) al puntero
+                displacementFilter.scale.x += (targetX - displacementFilter.scale.x) * 0.05;
+                displacementFilter.scale.y += (targetY - displacementFilter.scale.y) * 0.05;
+            } else {
+                // Si el mouse no está, vuelve a una oscilación natural de oleaje suave
+                displacementFilter.scale.x += (30 + Math.sin(displacementSprite.x * 0.01) * 5 - displacementFilter.scale.x) * 0.02;
+                displacementFilter.scale.y += (30 + Math.cos(displacementSprite.y * 0.01) * 5 - displacementFilter.scale.y) * 0.02;
+            }
+        });
+
+        // Evento de cambio de tamaño de pantalla
+        window.addEventListener('resize', () => {
+            app.renderer.resize(window.innerWidth, heroSection.offsetHeight);
+            resizeBackground();
+        });
+    </script>
 </body>
 </html>

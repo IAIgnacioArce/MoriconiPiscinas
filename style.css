@@ -1,21 +1,18 @@
 /* =========================================
-   VARIABLES DE COLOR (NUEVA PALETA ORGÁNICA)
+   VARIABLES DE COLOR (PREMIUM MINIMALISTA)
    ========================================= */
 :root {
-    --dark-blue: #243C2C;      /* Verde bosque: Títulos, navbar, footer */
-    --royal-blue: #59789F;     /* Azul acero: Botones principales, acentos */
-    --light-blue: #A9B6C4;     /* Celeste empolvado: Banners, fondos secundarios */
-    --slate-green: #7A9445;    /* Verde oliva: Botón nav, hover de botones */
-    --mid-blue: #ECE69D;       /* Tono arena: Fondos de galería, acentos cálidos */
-    
-    /* Fondos base para mantener la limpieza */
-    --white-bg: #FAFAFA;       /* Fondo general super claro */
-    --white-alt: #FFFFFF;      /* Fondo puro para las tarjetas */
-    --text-dark: #243C2C;      /* Texto principal en verde oscuro para legibilidad */
+    --bg-main: #F4F4F5;          /* Gris cemento ultra claro */
+    --bg-surface: #FFFFFF;       /* Blanco puro para tarjetas */
+    --text-main: #18181B;        /* Casi negro, máxima legibilidad */
+    --text-muted: #71717A;       /* Gris medio para textos secundarios */
+    --accent-dark: #09090B;      /* Negro puro para bloques de peso */
+    --accent-water: #2C3E50;     /* Azul acero apagado */
+    --border-line: #E4E4E7;      /* Líneas estructurales finas */
 }
 
 /* =========================================
-   RESET Y BASE ARCHITECTURAL
+   RESET Y BASE ESTRUCTURAL
    ========================================= */
 * {
     margin: 0;
@@ -24,34 +21,38 @@
 }
 
 body {
-    /* Pila de fuentes nativas geométricas y limpias */
-    font-family: 'Century Gothic', 'Tw Cen MT', 'Futura', system-ui, -apple-system, sans-serif;
-    background-color: var(--white-bg);
-    color: var(--text-dark);
-    line-height: 1.6;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    line-height: 1.7;
+    font-size: 16px;
     scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3 {
-    color: var(--dark-blue);
-    margin-bottom: 1rem;
-    font-weight: bold;
+    color: var(--text-main);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
 }
 
 a {
     text-decoration: none;
+    color: inherit;
 }
 
 /* =========================================
-   NAVEGACIÓN
+   NAVEGACIÓN (ESTILO EDITORIAL)
    ========================================= */
 .topbar {
-    background-color: var(--dark-blue);
-    color: var(--white-alt);
+    background-color: var(--accent-dark);
+    color: #FAFAFA;
     text-align: center;
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
-    letter-spacing: 0.5px;
+    padding: 0.6rem 1rem;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
 .navbar {
@@ -59,209 +60,313 @@ a {
     justify-content: space-between;
     align-items: center;
     padding: 1.5rem 5%;
-    background-color: var(--white-alt);
+    background-color: var(--bg-surface);
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 2px 10px rgba(8, 31, 92, 0.1);
+    border-bottom: 1px solid var(--border-line);
 }
 
 .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: var(--dark-blue);
-    letter-spacing: 1px;
+    font-size: 1.2rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
 }
 
 .nav-links {
     list-style: none;
     display: flex;
-    gap: 2rem;
+    gap: 2.5rem;
     align-items: center;
 }
 
 .nav-links a {
-    color: var(--dark-blue);
-    font-weight: bold;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
     transition: color 0.3s ease;
 }
 
 .nav-links a:hover {
-    color: var(--royal-blue);
+    color: var(--text-main);
 }
 
 .btn-nav {
-    background-color: var(--slate-green);
-    color: var(--white-alt) !important;
-    padding: 0.7rem 1.5rem;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
+    border: 1px solid var(--text-main);
+    color: var(--text-main) !important;
+    padding: 0.6rem 1.5rem;
+    transition: all 0.3s ease !important;
 }
 
 .btn-nav:hover {
-    background-color: var(--dark-blue);
+    background-color: var(--text-main);
+    color: var(--bg-surface) !important;
 }
 
 /* =========================================
-   HERO SECTION (IMPACTO)
+   HERO SECTION (LIENZO INTERACTIVO WEBGL)
    ========================================= */
 .hero {
-    background: linear-gradient(rgba(8, 31, 92, 0.7), rgba(8, 31, 92, 0.7)), url('https://images.unsplash.com/photo-1576013551627-148fa8924385?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
-    height: 80vh;
+    height: 85vh;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: var(--white-alt);
     padding: 0 5%;
+    position: relative;
+    overflow: hidden;
+    background-color: var(--accent-dark); 
+}
+
+#canvas-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+#canvas-container canvas {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.65; /* Oscurece sutilmente la imagen para priorizar textos blancos */
 }
 
 .hero-content {
-    max-width: 800px;
+    max-width: 900px;
+    z-index: 1;
+    position: relative;
+    text-shadow: 0px 4px 20px rgba(0,0,0,0.85); /* Contraste fundamental */
 }
 
 .hero h1 {
-    color: var(--white-alt);
-    font-size: 3.5rem;
+    color: var(--bg-surface);
+    font-size: 4rem;
+    line-height: 1.1;
     margin-bottom: 1.5rem;
+    letter-spacing: 2px;
 }
 
 .hero p {
+    color: #E4E4E7;
     font-size: 1.2rem;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
+    font-weight: 400;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .btn-primary {
     display: inline-block;
-    background-color: var(--royal-blue);
-    color: var(--white-alt);
-    padding: 1rem 2.5rem;
-    font-size: 1.1rem;
-    font-weight: bold;
-    border-radius: 4px;
-    transition: transform 0.3s ease, background-color 0.3s ease;
+    background-color: var(--bg-surface);
+    color: var(--accent-dark);
+    padding: 1.2rem 3rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .btn-primary:hover {
-    background-color: var(--dark-blue);
-    transform: translateY(-3px);
+    background-color: var(--accent-water);
+    color: var(--bg-surface);
 }
 
 /* =========================================
-   SECCIONES GENERALES & GEOMETRÍA
+   SECCIONES Y BLOQUES GEOMÉTRICOS
    ========================================= */
 section {
-    padding: 5rem 5%;
+    padding: 6rem 5%;
 }
 
 .stats-banner {
-    background-color: var(--light-blue);
+    background-color: var(--accent-dark);
+    color: var(--bg-surface);
     text-align: center;
-    padding: 4rem 5%;
+    padding: 5rem 5%;
 }
 
 .stats-banner h2 {
+    color: var(--bg-surface);
     font-size: 2.5rem;
-    color: var(--dark-blue);
+    margin-bottom: 1.5rem;
+}
+
+.stats-banner p {
+    color: #A1A1AA;
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.1rem;
 }
 
 .why-choose-us h2 {
     text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 3rem;
+    font-size: 2rem;
+    margin-bottom: 4rem;
 }
 
 .grid-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2px;
+    background-color: var(--border-line);
+    border: 1px solid var(--border-line);
 }
 
 .card {
-    background-color: var(--white-alt);
-    padding: 2.5rem 1.5rem;
-    border-top: 5px solid var(--royal-blue);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    transition: transform 0.3s ease;
+    background-color: var(--bg-surface);
+    padding: 4rem 2rem;
+    text-align: center;
+    transition: background-color 0.3s ease;
 }
 
 .card:hover {
-    transform: translateY(-10px);
+    background-color: var(--bg-main);
 }
 
 .card h3 {
-    color: var(--royal-blue);
-    font-size: 1.3rem;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: var(--accent-water);
+}
+
+.card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.history-section, .technical-system {
+    border-bottom: 1px solid var(--border-line);
+}
+
+.history-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
 }
 
 .technical-system {
-    background-color: var(--dark-blue);
-    color: var(--white-bg);
+    background-color: var(--bg-surface);
 }
 
-.technical-system h2, .technical-system h3 {
-    color: var(--light-blue);
+.technical-system h2 {
+    font-size: 2rem;
+    margin-bottom: 3rem;
 }
 
 .system-details {
-    display: flex;
-    gap: 3rem;
-    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+}
+
+.detail-block h3 {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
 }
 
 .gallery-section {
-    text-align: center;
+    background-color: var(--bg-main);
+}
+
+.gallery-section h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
 }
 
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1rem;
-    margin-top: 3rem;
+    margin-top: 4rem;
 }
 
 .gallery-item {
-    background-color: var(--mid-blue);
-    height: 250px;
+    background-color: var(--accent-dark);
+    height: 350px;
     display: flex;
     align-items: flex-end;
-    padding: 1rem;
-    color: var(--white-alt);
-    font-weight: bold;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.gallery-item span {
+    color: var(--bg-surface);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    z-index: 2;
 }
 
 /* =========================================
-   FOOTER Y WHATSAPP FLOTANTE
+   FOOTER
    ========================================= */
 footer {
-    background-color: var(--dark-blue);
-    color: var(--light-blue);
-    padding: 5rem 5% 2rem;
+    background-color: var(--accent-dark);
+    color: var(--bg-surface);
+    padding: 6rem 5% 3rem;
 }
 
 .cta-final {
     text-align: center;
-    margin-bottom: 4rem;
-    padding-bottom: 4rem;
-    border-bottom: 1px solid var(--slate-green);
+    margin-bottom: 5rem;
+    padding-bottom: 5rem;
+    border-bottom: 1px solid #27272A;
 }
 
 .cta-final h2 {
-    color: var(--white-alt);
+    color: var(--bg-surface);
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.cta-final p {
+    color: #A1A1AA;
+    margin-bottom: 3rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .footer-info {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     flex-wrap: wrap;
-    gap: 2rem;
+    gap: 3rem;
 }
 
-.footer-info a {
-    color: var(--light-blue);
+.contact-data p {
+    color: #A1A1AA;
+    margin-bottom: 0.5rem;
 }
 
+.contact-data a {
+    color: var(--bg-surface);
+    transition: color 0.3s;
+}
+
+.contact-data a:hover {
+    color: var(--accent-water);
+}
+
+.copyright {
+    color: #52525B;
+    font-size: 0.85rem;
+}
+
+/* =========================================
+   WHATSAPP FLOTANTE
+   ========================================= */
 .whatsapp-float {
     position: fixed;
     bottom: 30px;
@@ -273,36 +378,43 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
     z-index: 9999;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .whatsapp-float:hover {
-    transform: scale(1.1);
+    transform: scale(1.1) translateY(-5px);
 }
 
 .whatsapp-float img {
-    width: 35px;
+    width: 32px;
     height: auto;
 }
 
 /* =========================================
-   RESPONSIVE DESIGN (Móviles)
+   RESPONSIVE DESIGN (MÓVILES)
    ========================================= */
 @media (max-width: 768px) {
     .navbar {
         flex-direction: column;
-        gap: 1rem;
+        gap: 1.5rem;
+        padding: 1.5rem;
     }
     .nav-links {
-        flex-wrap: wrap;
-        justify-content: center;
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+        text-align: center;
     }
     .hero h1 {
         font-size: 2.5rem;
     }
     .system-details {
-        flex-direction: column;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    section {
+        padding: 4rem 5%;
     }
 }
