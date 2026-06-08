@@ -415,24 +415,25 @@ footer {
     section {
         padding: 4rem 5%;
     }
+} /* <-- ¡ESTA LLAVE CIERRA EL MODO CELULAR. LAS FOTOS VAN DESPUÉS! */
 
-    /* =========================================
+/* =========================================
    FONDOS FOTOGRÁFICOS DE LA GALERÍA
    ========================================= */
 .bg-residencial {
-    background: linear-gradient(to top, rgba(9, 9, 11, 0.9) 0%, rgba(9, 9, 11, 0) 50%), url('./imagenes/residencial.jpg') center/cover no-repeat;
+    background: linear-gradient(to top, rgba(9, 9, 11, 0.9) 0%, rgba(9, 9, 11, 0) 50%), url('./imagenes/residencial.jpg') center / cover no-repeat;
 }
 
 .bg-country {
-    background: linear-gradient(to top, rgba(9, 9, 11, 0.9) 0%, rgba(9, 9, 11, 0) 50%), url('./imagenes/country.jpg') center/cover no-repeat;
+    background: linear-gradient(to top, rgba(9, 9, 11, 0.9) 0%, rgba(9, 9, 11, 0) 50%), url('./imagenes/country.jpg') center / cover no-repeat;
 }
 
 .bg-complejo {
-    background: linear-gradient(to top, rgba(9, 9, 11, 0.9) 0%, rgba(9, 9, 11, 0) 50%), url('./imagenes/complejo.jpg') center/cover no-repeat;
+    background: linear-gradient(to top, rgba(9, 9, 11, 0.9) 0%, rgba(9, 9, 11, 0) 50%), url('./imagenes/complejo.jpg') center / cover no-repeat;
 }
 
 .bg-personalizada {
-    background: linear-gradient(to top, rgba(9, 9, 11, 0.9) 0%, rgba(9, 9, 11, 0) 50%), url('./imagenes/personalizada.jpg') center/cover no-repeat;
+    background: linear-gradient(to top, rgba(9, 9, 11, 0.9) 0%, rgba(9, 9, 11, 0) 50%), url('./imagenes/personalizada.jpg') center / cover no-repeat;
 }
 
 /* Pequeño efecto premium al pasar el mouse por las fotos */
@@ -443,5 +444,4 @@ footer {
 .gallery-item:hover {
     transform: scale(0.97);
     cursor: pointer;
-}
 }
