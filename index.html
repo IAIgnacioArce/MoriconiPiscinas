@@ -117,30 +117,28 @@
     </a>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/5.3.3/pixi.min.js"></script>
+
     <script>
+        // Referencias a los elementos del DOM
         const container = document.getElementById('canvas-container');
         const heroSection = document.getElementById('hero-section');
 
-        // Inicializamos la aplicación de PixiJS
+        // Configuramos la aplicación PixiJS de alto rendimiento
         const app = new PIXI.Application({
             width: window.innerWidth,
             height: heroSection.offsetHeight,
             autoDensity: true,
             resolution: window.devicePixelRatio || 1,
-            backgroundColor: 0x09090B,
+            backgroundColor: 0x09090B, // Color de respaldo oscuro
         });
 
+        // Añadimos el lienzo (canvas) generado al contenedor HTML
         container.appendChild(app.view);
 
-        // Cargamos la imagen de la pileta desde tu carpeta local
+        // Cargamos la imagen de la pileta (usando tu ruta relativa existente)
         const background = PIXI.Sprite.from('./imagenes/piletaDesdeArriba.jpg');
         
-        // Ajustamos la imagen para que cubra todo el espacio del hero
-        background.anchor.set(0.5);
-        background.x = app.screen.width / 2;
-        background.y = app.screen.height / 2;
-        
-        // Función para redimensionar y mantener el efecto cover de la imagen
+        // Función para asegurar que la imagen cubra todo el espacio (efecto CSS 'cover')
         function resizeBackground() {
             const screenRatio = app.screen.width / app.screen.height;
             const imageRatio = background.texture.width / background.texture.height;
@@ -152,67 +150,65 @@
                 background.height = app.screen.height;
                 background.width = app.screen.height * imageRatio;
             }
+            // Centramos la imagen en el lienzo
             background.x = app.screen.width / 2;
             background.y = app.screen.height / 2;
+            background.anchor.set(0.5);
         }
 
-        // Asegurar que cuando cargue la textura se ajuste correctamente
+        // Ejecutamos el resize cuando la imagen cargue
         background.texture.baseTexture.on('loaded', resizeBackground);
         app.stage.addChild(background);
 
-        // Mapa de desplazamiento (Textura de ruido que simula las ondas de agua)
+        // --- CREAMOS EL EFECTO DE AGUA (RIPPLE EFFECT) ---
+        // Necesitamos una "textura de ruido" que actúe como mapa de desplazamiento.
+        // Usaremos una textura de nubes confiable de Pixi.
         const displacementSprite = PIXI.Sprite.from('https://res.cloudinary.com/dvxmac3eg/image/upload/v1647466885/clouds_f0p920.jpg');
+        
+        // Configuramos la textura para que se repita infinitesimalmente
         displacementSprite.texture.baseTexture.wrapMode = PIXI.WRAP_MODES.REPEAT;
         
+        // Creamos el filtro de desplazamiento WebGL
         const displacementFilter = new PIXI.filters.DisplacementFilter(displacementSprite);
         
-        // Seteamos la escala inicial del filtro de distorsión
-        displacementFilter.scale.x = 30;
-        displacementFilter.scale.y = 30;
+        // Escala inicial de la distorsión (qué tan fuerte es la onda)
+        displacementFilter.scale.x = 20;
+        displacementFilter.scale.y = 20;
         
-        displacementSprite.scale.set(1.5);
+        displacementSprite.scale.set(1.5); // Escala de la textura de ruido
         app.stage.addChild(displacementSprite);
+        
+        // Aplicamos el filtro al escenario completo
         app.stage.filters = [displacementFilter];
 
+        // --- INTERACTIVIDAD CON EL MOUSE ---
         let targetX = 0;
         let targetY = 0;
-        let mouseInteracting = false;
 
-        // Rastreamos el movimiento del mouse dentro del Hero
+        // Detectamos el movimiento sobre la sección hero
         heroSection.addEventListener('mousemove', (e) => {
+             // Calculamos la posición del mouse relativa al centro del hero
             const rect = heroSection.getBoundingClientRect();
-            // Calculamos la posición relativa al centro de la pantalla
-            targetX = (e.clientX - rect.left - rect.width / 2) * 0.4;
-            targetY = (e.clientY - rect.top - rect.height / 2) * 0.4;
-            mouseInteracting = true;
-        });
-
-        // Detectar cuando el mouse sale de la sección
-        heroSection.addEventListener('mouseleave', () => {
-            mouseInteracting = false;
+            targetX = e.clientX - rect.left - rect.width / 2;
+            targetY = e.clientY - rect.top - rect.height / 2;
         });
 
         // Bucle de animación (Ticker) corre a 60fps
         app.ticker.add((delta) => {
-            // Movimiento constante simulando la corriente fluida del agua
-            displacementSprite.x += 0.6 * delta;
-            displacementSprite.y += 0.4 * delta;
+            // Movimiento suave y constante para simular la corriente del agua
+            displacementSprite.x += 0.8 * delta;
+            displacementSprite.y += 0.6 * delta;
 
-            if (mouseInteracting) {
-                // Suavizado de la interacción (Interpolación lineal) al puntero
-                displacementFilter.scale.x += (targetX - displacementFilter.scale.x) * 0.05;
-                displacementFilter.scale.y += (targetY - displacementFilter.scale.y) * 0.05;
-            } else {
-                // Si el mouse no está, vuelve a una oscilación natural de oleaje suave
-                displacementFilter.scale.x += (30 + Math.sin(displacementSprite.x * 0.01) * 5 - displacementFilter.scale.x) * 0.02;
-                displacementFilter.scale.y += (30 + Math.cos(displacementSprite.y * 0.01) * 5 - displacementFilter.scale.y) * 0.02;
-            }
+            // Suavizamos el movimiento interactivo del mouse (interpolación lineal)
+            // Esto hace que la distorsión focal "siga" al mouse de forma fluida
+            displacementFilter.scale.x += (targetX * 0.2 - displacementFilter.scale.x) * 0.05;
+            displacementFilter.scale.y += (targetY * 0.2 - displacementFilter.scale.y) * 0.05;
         });
 
-        // Evento de cambio de tamaño de pantalla
+        // Manejo del redimensionamiento de ventana (Fundamental para robustness)
         window.addEventListener('resize', () => {
-            app.renderer.resize(window.innerWidth, heroSection.offsetHeight);
-            resizeBackground();
+             app.renderer.resize(window.innerWidth, heroSection.offsetHeight);
+             resizeBackground();
         });
     </script>
 </body>
