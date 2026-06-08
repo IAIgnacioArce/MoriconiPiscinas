@@ -25,8 +25,6 @@
     </header>
 
     <section class="hero" id="hero-section">
-        <div id="canvas-container"></div>
-        
         <div class="hero-content">
             <h1>55 años construyendo piletas en Córdoba</h1>
             <p>Desde hace más de cinco décadas construimos bajo un sistema tradicional desarrollado para las condiciones climáticas de nuestro país, combinando calidad, experiencia y durabilidad en cada proyecto.</p>
@@ -116,99 +114,29 @@
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
     </a>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/5.3.3/pixi.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.ripples/0.5.3/jquery.ripples.min.js"></script>
 
     <script>
-        // Referencias a los elementos del DOM
-        const container = document.getElementById('canvas-container');
-        const heroSection = document.getElementById('hero-section');
+        $(document).ready(function() {
+            // Aplicamos el efecto solo al contenedor principal
+            $('.hero').ripples({
+                resolution: 512,         // Calidad del renderizado del agua
+                dropRadius: 20,          // Tamaño de la onda alrededor del mouse
+                perturbance: 0.04,       // Intensidad de la distorsión
+            });
 
-        // Configuramos la aplicación PixiJS de alto rendimiento
-        const app = new PIXI.Application({
-            width: window.innerWidth,
-            height: heroSection.offsetHeight,
-            autoDensity: true,
-            resolution: window.devicePixelRatio || 1,
-            backgroundColor: 0x09090B, // Color de respaldo oscuro
-        });
-
-        // Añadimos el lienzo (canvas) generado al contenedor HTML
-        container.appendChild(app.view);
-
-        // Cargamos la imagen de la pileta (usando tu ruta relativa existente)
-        const background = PIXI.Sprite.from('./imagenes/piletaDesdeArriba.jpg');
-        
-        // Función para asegurar que la imagen cubra todo el espacio (efecto CSS 'cover')
-        function resizeBackground() {
-            const screenRatio = app.screen.width / app.screen.height;
-            const imageRatio = background.texture.width / background.texture.height;
-            
-            if (screenRatio > imageRatio) {
-                background.width = app.screen.width;
-                background.height = app.screen.width / imageRatio;
-            } else {
-                background.height = app.screen.height;
-                background.width = app.screen.height * imageRatio;
-            }
-            // Centramos la imagen en el lienzo
-            background.x = app.screen.width / 2;
-            background.y = app.screen.height / 2;
-            background.anchor.set(0.5);
-        }
-
-        // Ejecutamos el resize cuando la imagen cargue
-        background.texture.baseTexture.on('loaded', resizeBackground);
-        app.stage.addChild(background);
-
-        // --- CREAMOS EL EFECTO DE AGUA (RIPPLE EFFECT) ---
-        // Necesitamos una "textura de ruido" que actúe como mapa de desplazamiento.
-        // Usaremos una textura de nubes confiable de Pixi.
-        const displacementSprite = PIXI.Sprite.from('https://res.cloudinary.com/dvxmac3eg/image/upload/v1647466885/clouds_f0p920.jpg');
-        
-        // Configuramos la textura para que se repita infinitesimalmente
-        displacementSprite.texture.baseTexture.wrapMode = PIXI.WRAP_MODES.REPEAT;
-        
-        // Creamos el filtro de desplazamiento WebGL
-        const displacementFilter = new PIXI.filters.DisplacementFilter(displacementSprite);
-        
-        // Escala inicial de la distorsión (qué tan fuerte es la onda)
-        displacementFilter.scale.x = 20;
-        displacementFilter.scale.y = 20;
-        
-        displacementSprite.scale.set(1.5); // Escala de la textura de ruido
-        app.stage.addChild(displacementSprite);
-        
-        // Aplicamos el filtro al escenario completo
-        app.stage.filters = [displacementFilter];
-
-        // --- INTERACTIVIDAD CON EL MOUSE ---
-        let targetX = 0;
-        let targetY = 0;
-
-        // Detectamos el movimiento sobre la sección hero
-        heroSection.addEventListener('mousemove', (e) => {
-             // Calculamos la posición del mouse relativa al centro del hero
-            const rect = heroSection.getBoundingClientRect();
-            targetX = e.clientX - rect.left - rect.width / 2;
-            targetY = e.clientY - rect.top - rect.height / 2;
-        });
-
-        // Bucle de animación (Ticker) corre a 60fps
-        app.ticker.add((delta) => {
-            // Movimiento suave y constante para simular la corriente del agua
-            displacementSprite.x += 0.8 * delta;
-            displacementSprite.y += 0.6 * delta;
-
-            // Suavizamos el movimiento interactivo del mouse (interpolación lineal)
-            // Esto hace que la distorsión focal "siga" al mouse de forma fluida
-            displacementFilter.scale.x += (targetX * 0.2 - displacementFilter.scale.x) * 0.05;
-            displacementFilter.scale.y += (targetY * 0.2 - displacementFilter.scale.y) * 0.05;
-        });
-
-        // Manejo del redimensionamiento de ventana (Fundamental para robustness)
-        window.addEventListener('resize', () => {
-             app.renderer.resize(window.innerWidth, heroSection.offsetHeight);
-             resizeBackground();
+            // Magia extra: Gotas automáticas cayendo en lugares aleatorios
+            setInterval(function() {
+                var $el = $('.hero');
+                var x = Math.random() * $el.outerWidth();
+                var y = Math.random() * $el.outerHeight();
+                var dropRadius = 20;
+                var strength = 0.04 + Math.random() * 0.04;
+                
+                $el.ripples('drop', x, y, dropRadius, strength);
+            }, 3000); // Cae una gota cada 3 segundos
         });
     </script>
 </body>

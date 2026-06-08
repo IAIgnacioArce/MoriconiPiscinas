@@ -6,7 +6,7 @@
     --bg-surface: #FFFFFF;       /* Blanco puro para tarjetas */
     --text-main: #18181B;        /* Casi negro, máxima legibilidad */
     --text-muted: #71717A;       /* Gris medio para textos secundarios */
-    --accent-dark: #09090B;      /* Negro puro para botones de alto impacto */
+    --accent-dark: #09090B;      /* Negro puro para bloques de peso */
     --accent-water: #2C3E50;     /* Azul acero apagado */
     --border-line: #E4E4E7;      /* Líneas estructurales finas */
 }
@@ -107,9 +107,11 @@ a {
 }
 
 /* =========================================
-   HERO SECTION (CONTENEDOR WEBGL DE AGUA)
+   HERO SECTION (CONTENEDOR RIPPLE)
    ========================================= */
 .hero {
+    /* Aquí cargamos la imagen directa. El script la leerá para crear el agua */
+    background: url('./imagenes/piletaDesdeArriba.jpg') center/cover no-repeat;
     height: 85vh;
     display: flex;
     align-items: center;
@@ -118,33 +120,25 @@ a {
     padding: 0 5%;
     position: relative;
     overflow: hidden;
-    /* Un color de fondo base oscuro, por si la imagen tarda en cargar */
-    background-color: var(--accent-dark); 
 }
 
-/* NUEVO: Estilos para el contenedor del lienzo WebGL */
-#canvas-container {
+/* Capa oscura superpuesta para que se lea el texto blanco sin romper el script */
+.hero::before {
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 0; /* Asegura que quede detrás del texto */
-}
-
-/* NUEVO: Estilos para el lienzo mismo */
-#canvas-container canvas {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Mantiene la proporción de la imagen */
-    opacity: 0.65; /* Oscurecemos un poco la animación para que lea bien el texto blanco */
+    background-color: rgba(9, 9, 11, 0.5); /* Filtro oscuro */
+    z-index: 0;
+    pointer-events: none; /* Deja que el mouse traspase e interactúe con el fondo */
 }
 
 .hero-content {
     max-width: 900px;
-    z-index: 1; /* Asegura que el texto esté por encima del canvas interactivo */
+    z-index: 1; /* Asegura que el texto esté por encima de la capa oscura */
     position: relative;
-    /* Aumentamos la sombra de texto fundamental para lectura sobre el agua */
     text-shadow: 0px 4px 20px rgba(0,0,0,0.85); 
 }
 
@@ -277,348 +271,6 @@ section {
     margin-bottom: 1rem;
 }
 
-.gallery-section {
-    background-color: var(--bg-main);
-}
-
-.gallery-section h2 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-}
-
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1rem;
-    margin-top: 4rem;
-}
-
-.gallery-item {
-    background-color: var(--accent-dark);
-    height: 350px;
-    display: flex;
-    align-items: flex-end;
-    padding: 2rem;
-    position: relative;
-    overflow: hidden;
-}
-
-.gallery-item span {
-    color: var(--bg-surface);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    z-index: 2;
-}
-
-/* =========================================
-   FOOTER
-   ========================================= */
-footer {
-    background-color: var(--accent-dark);
-    color: var(--bg-surface);
-    padding: 6rem 5% 3rem;
-}
-
-.cta-final {
-    text-align: center;
-    margin-bottom: 5rem;
-    padding-bottom: 5rem;
-    border-bottom: 1px solid #27272A;
-}
-
-.cta-final h2 {
-    color: var(--bg-surface);
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-}
-
-.cta-final p {
-    color: #A1A1AA;
-    margin-bottom: 3rem;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.footer-info {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    gap: 3rem;
-}
-
-.contact-data p {
-    color: #A1A1AA;
-    margin-bottom: 0.5rem;
-}
-
-.contact-data a {
-    color: var(--bg-surface);
-    transition: color 0.3s;
-}
-
-.contact-data a:hover {
-    color: var(--accent-water);
-}
-
-.copyright {
-    color: #52525B;
-    font-size: 0.85rem;
-}
-
-/* =========================================
-   WHATSAPP FLOTANTE
-   ========================================= */
-.whatsapp-float {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    background-color: #25D366;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-    z-index: 9999;
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.whatsapp-float:hover {
-    transform: scale(1.1) translateY(-5px);
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    background-color: var(--bg-main);
-    color: var(--text-main);
-    line-height: 1.7;
-    font-size: 16px;
-    scroll-behavior: smooth;
-    -webkit-font-smoothing: antialiased;
-}
-
-h1, h2, h3 {
-    color: var(--text-main);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-/* =========================================
-   NAVEGACIÓN
-   ========================================= */
-.topbar {
-    background-color: var(--accent-dark);
-    color: #FAFAFA;
-    text-align: center;
-    padding: 0.6rem 1rem;
-    font-size: 0.8rem;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-}
-
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem 5%;
-    background-color: var(--bg-surface);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    border-bottom: 1px solid var(--border-line);
-}
-
-.logo {
-    font-size: 1.2rem;
-    font-weight: 800;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-}
-
-.nav-links {
-    list-style: none;
-    display: flex;
-    gap: 2.5rem;
-    align-items: center;
-}
-
-.nav-links a {
-    font-size: 0.85rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--text-muted);
-    transition: color 0.3s ease;
-}
-
-.nav-links a:hover {
-    color: var(--text-main);
-}
-
-.btn-nav {
-    border: 1px solid var(--text-main);
-    color: var(--text-main) !important;
-    padding: 0.6rem 1.5rem;
-    transition: all 0.3s ease !important;
-}
-
-.btn-nav:hover {
-    background-color: var(--text-main);
-    color: var(--bg-surface) !important;
-}
-
-/* =========================================
-   HERO SECTION (IMPACTO CRUDO)
-   ========================================= */
-.hero {
-    /* Filtro oscuro para que la tipografía blanca contraste perfectamente */
-    background: linear-gradient(rgba(9, 9, 11, 0.6), rgba(9, 9, 11, 0.8)), url('https://images.unsplash.com/photo-1576013551627-148fa8924385?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
-    height: 85vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 0 5%;
-}
-
-.hero-content {
-    max-width: 900px;
-}
-
-.hero h1 {
-    color: var(--bg-surface);
-    font-size: 4rem;
-    line-height: 1.1;
-    margin-bottom: 1.5rem;
-    letter-spacing: 2px;
-}
-
-.hero p {
-    color: #E4E4E7;
-    font-size: 1.2rem;
-    margin-bottom: 2.5rem;
-    font-weight: 300;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.btn-primary {
-    display: inline-block;
-    background-color: var(--bg-surface);
-    color: var(--accent-dark);
-    padding: 1.2rem 3rem;
-    font-size: 0.9rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.btn-primary:hover {
-    background-color: var(--accent-water);
-    color: var(--bg-surface);
-}
-
-/* =========================================
-   ESPACIADO Y SECCIONES
-   ========================================= */
-section {
-    padding: 6rem 5%;
-}
-
-/* Banners estadísticos - Estilo arquitectónico */
-.stats-banner {
-    background-color: var(--accent-dark);
-    color: var(--bg-surface);
-    text-align: center;
-    padding: 5rem 5%;
-}
-
-.stats-banner h2 {
-    color: var(--bg-surface);
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-}
-
-.stats-banner p {
-    color: #A1A1AA;
-    max-width: 800px;
-    margin: 0 auto;
-    font-size: 1.1rem;
-}
-
-/* Tarjetas (Corte recto, sin sombra, bordes definidos) */
-.why-choose-us h2 {
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 4rem;
-}
-
-.grid-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2px; /* Espacio mínimo para simular grilla estructural */
-    background-color: var(--border-line); /* El fondo actúa como borde de la grilla */
-    border: 1px solid var(--border-line);
-}
-
-.card {
-    background-color: var(--bg-surface);
-    padding: 4rem 2rem;
-    text-align: center;
-    transition: background-color 0.3s ease;
-}
-
-.card:hover {
-    background-color: var(--bg-main);
-}
-
-.card h3 {
-    font-size: 1.1rem;
-    margin-bottom: 1rem;
-    color: var(--accent-water);
-}
-
-.card p {
-    color: var(--text-muted);
-    font-size: 0.95rem;
-}
-
-/* Sistema constructivo (Textos densos y asimétricos) */
-.history-section, .technical-system {
-    border-bottom: 1px solid var(--border-line);
-}
-
-.technical-system {
-    background-color: var(--bg-surface);
-}
-
-.technical-system h2 {
-    font-size: 2rem;
-    margin-bottom: 3rem;
-}
-
-.system-details {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-}
-
-.detail-block h3 {
-    font-size: 1.1rem;
-    color: var(--text-muted);
-    margin-bottom: 1rem;
-}
-
-/* Galería (Bloques crudos) */
 .gallery-section {
     background-color: var(--bg-main);
 }
