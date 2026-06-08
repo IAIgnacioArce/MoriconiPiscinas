@@ -1,15 +1,17 @@
 /* =========================================
-   VARIABLES DE COLOR
+   VARIABLES DE COLOR (NUEVA PALETA ORGÁNICA)
    ========================================= */
 :root {
-    --dark-blue: #081F5C;
-    --royal-blue: #334EAC;
-    --light-blue: #D0E3FF;
-    --mid-blue: #254370;
-    --slate-green: #68c2ec;
-    --white-bg: #F7F2EB;
-    --white-alt: #FFF9F0;
-    --text-dark: #1a1a1a;
+    --dark-blue: #243C2C;      /* Verde bosque: Títulos, navbar, footer */
+    --royal-blue: #59789F;     /* Azul acero: Botones principales, acentos */
+    --light-blue: #A9B6C4;     /* Celeste empolvado: Banners, fondos secundarios */
+    --slate-green: #7A9445;    /* Verde oliva: Botón nav, hover de botones */
+    --mid-blue: #ECE69D;       /* Tono arena: Fondos de galería, acentos cálidos */
+    
+    /* Fondos base para mantener la limpieza */
+    --white-bg: #FAFAFA;       /* Fondo general super claro */
+    --white-alt: #FFFFFF;      /* Fondo puro para las tarjetas */
+    --text-dark: #243C2C;      /* Texto principal en verde oscuro para legibilidad */
 }
 
 /* =========================================
