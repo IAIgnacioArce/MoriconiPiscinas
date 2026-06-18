@@ -5,7 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Moriconi Piscinas | 55 años construyendo piletas en Córdoba</title>
     <link rel="stylesheet" href="style.css">
-</head>
+
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1290043903114005');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1290043903114005&ev=PageView&noscript=1"
+    /></noscript>
+    </head>
 <body>
 
     <header>
@@ -28,7 +44,7 @@
         <div class="hero-content">
             <h1>55 años construyendo piletas en Córdoba</h1>
             <p>Desde hace más de cinco décadas construimos bajo un sistema tradicional desarrollado para las condiciones climáticas de nuestro país, combinando calidad, experiencia y durabilidad en cada proyecto.</p>
-            <a href="https://wa.me/543515902326?text=Hola%20Moriconi%20Piscinas%2C%20vengo%20de%20la%20web%20y%20quiero%20mas%20informaci%C3%B3n." class="btn-primary" target="_blank">Solicitar Presupuesto</a>
+            <a href="https://wa.me/543515902326?text=Hola%20Moriconi%20Piscinas%2C%20vengo%20de%20la%20web%20y%20quiero%20mas%20informaci%C3%B3n." class="btn-primary" target="_blank" onclick="fbq('track', 'Contact');">Solicitar Presupuesto</a>
         </div>
     </section>
 
@@ -96,7 +112,7 @@
         <div class="cta-final">
             <h2>Construyamos juntos tu próxima pileta</h2>
             <p>Cada terreno es diferente. Cada proyecto también. Nuestro equipo puede asesorarte para diseñar una solución adaptada a tu espacio.</p>
-            <a href="https://wa.me/543515902326?text=Hola%20Moriconi%20Piscinas%2C%20vengo%20de%20la%20web%20y%20quiero%20mas%20informaci%C3%B3n." class="btn-primary" target="_blank">Solicitá tu presupuesto</a>
+            <a href="https://wa.me/543515902326?text=Hola%20Moriconi%20Piscinas%2C%20vengo%20de%20la%20web%20y%20quiero%20mas%20informaci%C3%B3n." class="btn-primary" target="_blank" onclick="fbq('track', 'Contact');">Solicitá tu presupuesto</a>
         </div>
         <div class="footer-info">
             <div class="contact-data">
@@ -110,24 +126,21 @@
         </div>
     </footer>
 
-    <a href="https://wa.me/543515902326?text=Hola%20Moriconi%20Piscinas%2C%20vengo%20de%20la%20web%20y%20quiero%20mas%20informaci%C3%B3n." class="whatsapp-float" target="_blank">
+    <a href="https://wa.me/543515902326?text=Hola%20Moriconi%20Piscinas%2C%20vengo%20de%20la%20web%20y%20quiero%20mas%20informaci%C3%B3n." class="whatsapp-float" target="_blank" onclick="fbq('track', 'Contact');">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
     </a>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.ripples/0.5.3/jquery.ripples.min.js"></script>
 
     <script>
         $(document).ready(function() {
-            // Aplicamos el efecto solo al contenedor principal
             $('.hero').ripples({
-                resolution: 512,         // Calidad del renderizado del agua
-                dropRadius: 20,          // Tamaño de la onda alrededor del mouse
-                perturbance: 0.04,       // Intensidad de la distorsión
+                resolution: 512,
+                dropRadius: 20,
+                perturbance: 0.04,
             });
 
-            // Magia extra: Gotas automáticas cayendo en lugares aleatorios
             setInterval(function() {
                 var $el = $('.hero');
                 var x = Math.random() * $el.outerWidth();
@@ -136,7 +149,7 @@
                 var strength = 0.04 + Math.random() * 0.04;
                 
                 $el.ripples('drop', x, y, dropRadius, strength);
-            }, 3000); // Cae una gota cada 3 segundos
+            }, 3000);
         });
     </script>
 </body>
